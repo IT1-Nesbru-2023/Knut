@@ -1,0 +1,30 @@
+.thMedier {
+   text-align: left;
+   width: 1000px;
+   padding: 10px;
+}
+
+.Prosent {
+   padding: 40px;
+   column-span: all;
+   text-align: center;
+   border: black 1px solid;
+}
+
+.green {
+   background-color: rgba(0, 128, 0, 0.221);
+}
+
+.prosentTall {
+   width: 1000px;
+   padding: 10px;
+}
+
+#thead {
+   padding: 30px;
+   text-align: left;
+   border: 1px solid black;
+}
+.år{
+   padding:20px;
+}
