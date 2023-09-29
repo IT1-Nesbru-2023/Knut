@@ -45,10 +45,13 @@ body{
    background-color: rgba(193, 38, 38, 0.69);
 }
 #tomboks{
-   background-image:url(Screenshot\ 2023-09-28\ 134732.png);
-   background-size: 100%;
    border: double black;
+   background-color: rgba(193, 38, 38, 0.69);
+   text-align:center;
+   text-shadow: #000000;
+   font-size: xx-large;
 }
+   
 table{
    border: double black;
    padding:20px;
