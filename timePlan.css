@@ -1,0 +1,87 @@
+th ,td, table{
+    border: 1px solid black;
+    width: "100%";
+    padding: 10px;
+   }
+   .infotek {
+    border-radius: 15px;
+    background: teal;
+    width: 15px;
+    height: 20px;
+   }
+   .matte {
+    border-radius: 15px;
+    background: lightgreen;
+    width: 15px;
+    height: 20px;
+
+   }
+   .fys {
+    border-radius: 15px;
+    background: turquoise;
+    width: 15px;
+    height: 20px;
+
+   }
+   .norsk {
+    border-radius: 15px;
+    background: orange;
+    width: 15px;
+    height: 20px;
+
+   }
+   .kjemi {
+    border-radius: 15px;
+    background: #73AD21;
+    width: 15px;
+    height: 20px;
+
+   }
+   .kroppsøving {
+    border-radius: 15px;
+    background: blue;
+    width: 15px;
+    height: 20px;
+
+   }
+   .tysk {
+    border-radius: 15px;
+    background:pink;
+    width: 15px;
+    height: 20px;
+
+   }
+   .historie {
+    border-radius: 15px;
+    background: gold;
+    width: 15px;
+    height: 20px;
+
+   }
+   .ingenTime {
+    border-radius: 15px;
+    background: red;
+    width: 15px;
+    height: 20px;
+
+   }
+   .tid{
+    border-radius: 15px;
+    padding: 20px; 
+    width: 15px;
+    height: 20px;
+    
+
+   }
+   
+    th {
+
+        background: linear-gradient(to right, #f32170,
+    
+                #ff6b08, #cf23cf, #eedd44);
+    
+        -webkit-text-fill-color: transparent;
+    
+        -webkit-background-clip: text;
+    }
+   

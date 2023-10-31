@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="norsk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passord</title>
+</head>
+<body>
+  
+    <script>
+
+        let pass = "passord";
+        let passordInput = prompt("skriv inn et passord");
+    
+        if (pass == passordInput)
+        document.write("Riktig passord!");
+        else if (passordInput == "lengde?")
+        document.write(pass.length);
+        else if (passordInput == "1?")
+        document.write(pass[0]);
+        else if (passordInput == "2?")
+        document.write(pass[1]);
+        else if (passordInput == "3?")
+        document.write(pass[2]);
+        else if (passordInput == "4?")
+        document.write(pass[3]);
+        else if (passordInput == "5?")
+        document.write(pass[4]);
+        else if (passordInput == "6?")
+        document.write(pass[5]);
+        else if (passordInput == "siste?")
+        document.write(pass[6]);
+        else
+        document.write("feil passord :(");
+    
+    </script>
+</body>
+</html>
