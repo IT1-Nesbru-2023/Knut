@@ -1,44 +1,21 @@
-#hoved {
-    width: 1900px;
-    height: 920px;
-    display: grid;
-    gap: 10px;
-    background-color: #c6c6c600;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    grid-template-areas: 
-      "t t t t t t t t t t t t t t t" 
-      "t t t t t t t t t t t t t t t"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h"
-      "v v h h h h h h h h h h h h h";
+
       
-  }
+  
   #hoved > div {
     background-color: #aac9c600;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 10px;
   }
-  .topp    { grid-area : t; text-align: center; font-size: xx-large;}
-  .venstre { grid-area : v; }
-  .hoyre   { grid-area : h; }
-
-
 
   html, body {
-    width: 1910px;
-    height:920px;
+    width:99%;
+    height:99%;
   }
   
   body {
-      background: linear-gradient(-45deg, #3939407f, #3e3636, #504d4d, #676767);
+      background: linear-gradient(-45deg, #9d9c9cde, #3e3636, #6e6b6b87, #67676795);
       background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
+      animation: gradient 10s ease infinite;
   }
   
   @keyframes gradient {
@@ -54,12 +31,15 @@
   }
   .dropbtn {
     background-color: #dcfff200;
-    color: beige;
+    color: rgb(255, 255, 255);
     padding: 16px;
     font-size: 46px;
     border: groove, grey;
     border-radius:10px;
     width:450px;
+    font-family:sans;
+    
+    
     
   }
   
@@ -72,20 +52,24 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f100;
-    width: 450px;
+    background-color: #ffffff00;
+    width: 90%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius:10px;
-    border:dotted 1px;
+    border-style:groove;
+    border-width: 23px;
+    border-color: white;
+
   }
   
   .dropdown-content a {
-    color:beige;
+    color:rgb(255, 255, 255);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align:center;
+    font-family: sans-serif;
   }
   
   .dropdown-content div:hover {background-color: #7c7c7c; transform: scale(1.05); transition-duration: 0.5s;}

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>JavaScript Yahtzee</title>
+
+<style>
+      button {
+        background-color: #7f0000;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px 10px 8px 10px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+	a { color:#000; text-decoration:none; font-weight:bold; }
+	a:hover { color: red; }
+	table { font-size: 13px; }
+        img { border-radius: 5px; }
+body { 
+    width: 1280px;
+    height: 1024px;
+    margin: 0 auto !important;
+}
+input {
+    max-width: 50px;
+    color: #000;
+    height: 24px;
+    border: none;
+    padding-left: 10px;
+    font-size: 16px;
+}
+td {
+font-family: "Open Sans", sans-serif;
+font-size: 13px;
+}
+      input[type=checkbox] {
+height: 20px;
+width: 20px;
+      }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body onload="Init();" style="width:320px; height:300px; margin:0px; padding:0px;" bgcolor="#F8F8F8">
+<center onmouseover="javascript:displayNav('hidden');">
+<div align="center">
+  <center>
+  <table style="width:300px;">
+    <tr>
+      <td colspan="6"><form name="dicerull"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-success" onclick=Play() type="button" value="rull" name="rull">rull</button></td>
+      <td align="center"><img width=40 src="dice0.gif" border="1" name="dice1-pic" /></td>
+      <td align="center"><img width=40 src="dice0.gif" border="1" name="dice2-pic" /></td>
+      <td align="center"><img width=40 src="dice0.gif" border="1" name="dice3-pic" /></td>
+      <td align="center"><img width=40 src="dice0.gif" border="1" name="dice4-pic" /></td>
+      <td align="center"><img width=40 src="dice0.gif" border="1" name="dice5-pic" /></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="padding: 0px; margin: 0px;"></form></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="padding: 0px; margin: 0px;"><div style="height: 4px;"><span id="rullNum" name="rullNum"></span></div></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="padding: 0px; margin: 0px;"><form name="form"></td>
+    </tr>
+    <tr>
+      <td><b>behold:</b></td>
+      <td align="center"><input type="checkbox" value="ON" name="ckbox" /></td>
+      <td align="center"><input type="checkbox" value="ON" name="ckbox" /></td>
+      <td align="center"><input type="checkbox" value="ON" name="ckbox" /></td>
+      <td align="center"><input type="checkbox" value="ON" name="ckbox" /></td>
+      <td align="center"><input type="checkbox" value="ON" name="ckbox" /></td>
+    </tr>
+    <tr>
+      <td colspan="6"></td>
+    </tr>
+  </table>
+</center>
+</div>
+<div align="center">
+  <center>
+<table cellspacing="2" cellpadding="2" align="center">
+  <tbody>
+  <tr>
+    <td style="cursor:pointer;" onclick="col1(1);" align=middle  bgColor=#eeaaaa><a href="javascript:col1(1);">Enere </a></td>
+    <td><input size="5" name="cl1" /></td> 
+    <td style="cursor:pointer;" onclick="col1(7);" bgColor=#ccccee><a href="javascript:col1(7);">3 like </a></td>
+    <td><input size="5" name="cl2" /></td>
+  </tr>
+  <tr>
+    <td style="cursor:pointer;" onclick=col1(2) align=middle  bgColor=#eeaaaa><a href="javascript:col1(2);">Toere </a></td>
+    <td><input size=5 name=cl1></td> 
+    <td style="cursor:pointer;" onclick=col1(8) bgColor=#ccccee><a href="javascript:col1(8);">4 like </a></td>
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td style="cursor:pointer;" onclick=col1(3) align=middle  bgColor=#eeaaaa><a href="javascript:col1(3);">Treere </a></td>
+    <td><input size=5 name=cl1> </td>
+    <td style="cursor:pointer;" onclick=col1(9) bgColor=#ccccee><a href="javascript:col1(9);">Full hus </a></td>
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td style="cursor:pointer;" onclick=col1(4) align=middle  bgColor=#eeaaaa><a href="javascript:col1(4);">Firere </a></td>
+    <td><input size=5 name=cl1></td>
+    <td style="cursor:pointer;" onclick=col1(10) bgColor=#ccccee><a href="javascript:col1(10);">Liten Straight </a></td>
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td style="cursor:pointer;" onclick=col1(5) align=middle  bgColor=#eeaaaa><a href="javascript:col1(5);">Femere </a></td>
+    <td><input size=5 name=cl1></td> 
+    <td style="cursor:pointer;" onclick=col1(11) bgColor=#ccccee><a href="javascript:col1(11);">Stor Straight </a></td>
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td style="cursor:pointer;" onclick=col1(6) align=middle  bgColor=#eeaaaa><a href="javascript:col1(6);">Seksere </a></td>
+    <td><input size=5 name=cl1></td> 
+    <td style="cursor:pointer;" onclick=col1(12) bgColor=#ccccee><a href="javascript:col1(12);">Sjanse</a></td> 
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td align=middle  bgColor=#eeaaaa><B>Bonus</B></td>
+    <td><input size=5 name=bonus></td> 
+    <td style="cursor:pointer;" onclick=col1(13) bgColor=#ccccee><a href="javascript:col1(13);">Yatzi</a></td> 
+    <td><input size=5 name=cl2></td>
+  </tr>
+  <tr>
+    <td align=middle><B>Total </B></td>
+    <td><input size=5 name=total></td> 
+    <td><B>Total poengsum</B></td>
+    <td><input size=5 name=poengsum></td>
+  </tr>
+  <tr>
+    <td align=middle><font color=red><b>Poengsum</font></b></td> 
+    <td><input size=5 name=high></td>
+    <td colspan="2" align="left"><button class="btn btn-danger" onclick="document.location.reload();" type="reset" value="Nytt Spill">Nytt Spill</button></td>
+  </tr>
+  </tbody>
+</table>
+</form>
+</center>
+</div>
+</center>
+
+</body>
+
+<script>
+
+var spill_over;
+poengsum1=0;
+poengsum2=0;
+bxck=0;
+var bon = 0;
+var hits = new Array(6);
+var chdi = new Array();
+var Dice = new Array();
+rull=0;
+hs=0;
+function Init() {
+for (ckl = 0; ckl < 5; ckl++)
+{document.form.ckbox[ckl].checked = false;
+ } 
+ spill_over = 0;
+ document.getElementById('rullNum').innerHTML = " ";
+ sc=0;
+rull=0;
+document.dicerull.rull.value="rull ";
+document.images['dice1-pic'].src = "dice0.gif";
+ document.images['dice2-pic'].src = "dice0.gif";
+ document.images['dice3-pic'].src = "dice0.gif";
+ document.images['dice4-pic'].src = "dice0.gif";
+ document.images['dice5-pic'].src = "dice0.gif";
+for (z=0; z<6 ;z++) {
+ document.form.cl1[z].value = "";
+ document.form.cl2[z].value = "";
+ } bon=0;
+ poengsum1=0;
+ poengsum2=0;
+ document.form.cl2[6].value="";
+ document.form.bonus.value="";
+ document.form.total.value="";
+ document.form.poengsum.value="";
+ bxck=0;
+}
+function Play() {
+if (spill_over==0) { 
+if (hs==0) {
+ document.form.high.value=""; }
+else
+ document.form.high.value=hs;
+rull++;
+if (rull>3) {
+ alert ("tredje rull, velg noe!");
+ rull=0;
+ return;
+}
+document.getElementById('rullNum').innerHTML = "rull #" + rull;
+var dicePic = new Array(6);
+dicePic[0]="dice1";
+dicePic[1]="dice2";
+dicePic[2]="dice3";
+dicePic[3]="dice4";
+dicePic[4]="dice5";
+dicePic[5]="dice6";
+for (var i = 0; i < 6; i++) {
+eval('pic' + i + ' = new Image();');
+eval('pic' + i + '.src = dicePic[i];');
+}
+
+for (ch = 0; ch < 5; ch++) {
+ v= (eval("document.form.ckbox[" + ch + "].checked"));
+ if (v == true) { chdi[ch] = 1; }
+ else {
+ chdi[ch] = 0;
+ }
+ }
+for (d = 1; d < 6; d++) {
+if (chdi[d-1] == 0) {
+x = Math.round(Math.random() * 6) % 6 + 1;
+Dice[d] = x;
+document.images['dice' + d + '-pic'].src = dicePic[x-1]+".gif";}
+}
+}
+}
+function col1(n) {
+if( spill_over == 0 ) {
+var dtot=0;
+ document.getElementById('rullNum').innerHTML = " ";
+ if ((n > 0) && (n < 7)) {
+ck= (document.form.cl1[n-1].value);
+if (ck == ""){
+bxck++;
+var sc=0;
+for (z=1; z<6; z++) {
+if (Dice[z] == n) {
+ sc = sc + n; 
+ }
+}
+bon = bon + sc;
+if (bon > 62) {
+ poengsum1=poengsum1+35;
+ document.form.bonus.value=35;
+ poengsum2=poengsum2+35;
+ bon=0;
+}
+poengsum1 = poengsum1 + sc;
+poengsum2 = poengsum2 + sc;
+document.form.cl1[n-1].value=sc;
+document.form.total.value=poengsum1;
+document.form.poengsum.value=poengsum2;
+sc=0;
+rull=0;
+}
+}
+if (n > 6) {
+ck= (document.form.cl2[n-7].value);
+if (ck == ""){
+bxck++;
+var sc=0;
+ if ((n==7) || (n==8)) {
+    for (z=1; z<7; z++) {
+     hits[z]=0;
+     }
+    h3=0;
+    h4=0;    
+    for (z = 1; z < 6; z++) { 
+     v=Dice[z];
+     dtot=dtot+v;
+     hits[v]++;                 
+     }
+    for (z =1; z<7 ;z++) {
+     if ((n==7) && (hits[z] >= 3))   {
+         h3=1;
+         sc=dtot;
+         document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         }
+    else if ((n==8) && (hits[z] >= 4)) {
+         h4=1;
+         sc=dtot;
+         document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         }
+     }
+if ((n==7) && (h3==0)) {
+  document.form.cl2[n-7].value="0";
+  }
+if ((n==8) && (h4==0)) {
+  document.form.cl2[n-7].value="0";
+  }   
+}
+
+if (n==9) {
+h1=0;
+h2=0;
+for (h=1; h<7; h++) {
+ hits[h]=0;
+ }
+ for (z = 1; z < 6; z++) { 
+     v=Dice[z];
+     hits[v]++;                 
+     }
+ for (x=1; x<7; x++) {
+     if (hits[x]==2) {
+     h1=1; }
+     if (hits[x]==3) {
+     h2=1; }
+     }
+ if ((h1==1) && (h2==1)) {
+    sc=25;
+    document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+    }
+ if ((h1 !==1) || (h2 !==1)) {
+    sc=0;
+    document.form.cl2[n-7].value="0";
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;         
+  }
+}
+
+if ((n==10) || (n==11)) {
+var strt = new Array(7);
+straight=new String("");
+for (x=1; x<7; x++) {
+ strt[x]="";
+ }
+for (z=1; z<6; z++) {
+ v=Dice[z];
+ strt[v]=v;
+ }
+for (y=1; y<7; y++) {
+ if (strt[y] !== ""){
+ straight=straight+strt[y];
+ }
+}
+if (n==10) {
+if (straight=="13456") {
+ straight = "3456";
+ }
+ if ((straight.slice(0,4)=="1234") || (straight.slice(0,4)=="2345")  || (straight.slice(0,4)=="3456")) {
+  sc=30;
+    document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+         }
+  if ((straight.slice(0,4) !=="1234") && (straight.slice(0,4) !=="2345") && (straight.slice(0,4) !=="3456") && (n==10)) {
+  sc=0;
+    document.form.cl2[n-7].value="0";
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+    }
+}
+if (n==11) {
+if ((straight == "12345") || (straight =="23456")) {
+  sc=40;
+    document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+     }
+if ((straight !== "12345") && (straight !== "23456") && (n==11)) {
+  sc=0;
+    document.form.cl2[n-7].value="0";
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+     }
+ }
+ }
+
+if (n==12) {
+ for (z=1; z<6; z++) {
+ sc=sc+Dice[z];
+ }
+ document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         sc=0;
+         rull=0;
+}
+if (n==13) {
+y=0;
+for (h=1; h<7; h++) {
+ hits[h]=0;
+ }
+ for (z = 1; z < 6; z++) { 
+     v=Dice[z];
+     hits[v]++;                 
+     }
+ for (x=1; x<7; x++) {
+     if (hits[x]==5) {
+     y=1; }
+     }
+ if (y==1) {
+    sc=50;
+    document.form.cl2[n-7].value=sc;
+         poengsum2=poengsum2+sc;
+         document.form.poengsum.value=poengsum2;
+         rull=0;
+         sc=0;
+    }
+ if (y !==1) {
+    sc=0;
+    document.form.cl2[n-7].value=sc;
+         rull=0;
+         sc=0;
+  }
+}
+}
+}
+for (ckl = 0; ckl < 5; ckl++)
+{document.form.ckbox[ckl].checked = false;
+ }
+sc=0;
+rull=0;
+document.dicerull.rull.value="rull ";
+document.images['dice1-pic'].src = "dice0.gif";
+ document.images['dice2-pic'].src = "dice0.gif";
+ document.images['dice3-pic'].src = "dice0.gif";
+ document.images['dice4-pic'].src = "dice0.gif";
+ document.images['dice5-pic'].src = "dice0.gif";
+if (bxck==13) {
+ alert ("spill over, poengsummen din er " + poengsum2 + ".");
+ spill_over= 1;
+ if (poengsum2>hs){
+ hs=poengsum2;
+ document.form.high.value=hs;
+ } 
+ bon=0;
+ poengsum1=0;
+ poengsum2=0;
+ document.form.cl2[6].value="";
+ document.form.bonus.value="";
+ document.form.total.value="";
+ document.form.poengsum.value="";
+ bxck=0;
+}
+}
+}
+</script>
+
+
+</html>

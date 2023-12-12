@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skuddår</title>
+</head>
+
+<body>
+
+    <script>
+
+        let tall = prompt("Skriv in ett årstall du har lyst til å skjekke om er et skuddår")
+        let skuddAar = false;
+
+        if (tall % 4 == 0) {
+            skuddAar = true
+            document.write("Året ditt er et skuddår!");
+        } else {
+            skuddAar = false
+            document.write("Året ditt er ikke et skuddår");
+        }
+
+    </script>
+    
+</body>
+
+</html>

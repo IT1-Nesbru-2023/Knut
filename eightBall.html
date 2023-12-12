@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tilfeldig Tall</title>
+</head>
+
+<body>
+    <p>Skriv et ja eller nei sprørsmål.</p>
+    <input type="Tekst">
+    <input type="button" onclick="spin()" value="Go!">
+    <p id="boom"></p>
+
+    <script>
+        function spin() {
+
+            let tall = (Math.ceil(Math.random() * 8));
+
+            console.log(tall)
+
+            if (tall == 8)
+                document.write(" Ja garantert");
+
+            else if (tall == 7)
+                document.write(" Kanskje... ");
+
+            else if (tall == 6)
+                document.write(" Spør moren din, hun vet svaret. ");
+
+            else if (tall == 5)
+                document.write(" Det er ca 2% sjansje for at det skjer.");
+
+            else if (tall == 4)
+                document.write(" Hundre prosent ");
+
+            else if (tall == 3)
+                document.write(" Nei");
+
+            else if (tall == 2)
+                document.write(" Hvis du har en god dag, Ja.");
+
+            else if (tall == 1)
+                document.write(" hell nah");
+        }
+    </script>
+</body>
+</html>

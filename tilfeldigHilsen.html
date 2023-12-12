@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div {
+            background-color:rgb(255, 0, 0);
+            border-color:black;
+            box-shadow: inset;
+            height:100px;
+            width: 100px;
+            margin-left:15px;
+            margin-top:20px;
+            border-radius: 10px;
+            padding: 20px;
+            color:white;
+        }
+        div:hover {
+            transform: scale(1.2);
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id = "hilsen">Trykk på meg!</div>
+    
+    <script>
+        const boom = document.getElementById("hilsen");
+        
+        boom.addEventListener("click",tilfeldigHilsen)
+
+        function tilfeldigHilsen () {
+
+            let tilfeldigTall = (Math.ceil(Math.random() * 5 )); 
+
+            if (tilfeldigTall == 1) {
+                alert("Hallo");
+            }
+            else if(tilfeldigTall == 2) {
+                alert("Hei")
+            }
+            else if(tilfeldigTall == 3) {
+                alert("God dag")
+            }
+            else if(tilfeldigTall == 4) {
+                alert("Hello world")
+            }
+            else if(tilfeldigTall == 5) {
+                alert("Halla balla")
+            }
+        }
+       
+        
+
+    </script>
+    <h1></h1>
+</body>
+</html>
