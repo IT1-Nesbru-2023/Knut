@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lag ditt visitkort!</title>
+    <style>
+        #hoved {
+            width: 100%;
+            height: 900px;
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: "v v h h h"
+                "v v h h h"
+                "v v h h h";
+            justify-content: center;
+        }
+
+        .Marg {
+            grid-area: v;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow: auto;
+            scrollbar-width: thin;
+            /* Adding scroll for overflow */
+        }
+
+        .Felt {
+            grid-area: h;
+            background-color: #f2f2f2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        input[type="file"] {
+            margin-top: 5px;
+        }
+
+        #info {
+            margin-top: 0px;
+            text-align: center;
+            padding-bottom: 20px;
+            
+        }
+
+        #styling {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        #resultat_1 {
+    height: 450px;
+    width: 364.05px;
+    background-color: none;
+    position: absolute;
+    top: 225px;
+    left: 50%;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    font-family: 'Garamond', serif;
+
+}
+#Navn_resultat_h1{
+    position: relative;
+    top: 50px;
+    left: 70px;
+}
+#Stilling_resultat_p{
+    position: relative;
+    top:30px;
+    left:70px;
+    font-size: 20px;;
+}
+
+
+#resultat_2 {
+    height: 450px;
+    width: 364.05px;
+    background-color: rgb(255, 166, 0);
+    position: absolute;
+    top: 225px;
+    left: 69.005%;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    font-family: 'Garamond', serif;
+    font-size: 20px;
+
+}
+
+#bilde_resultat {
+            max-width: 60%; /* Limit the width of the image to fit its container */
+            max-height: 60%; /* Limit the height of the image to fit its container */
+            display: block; /* Ensure the image is displayed as a block element */
+            margin: auto; /* Center the image horizontally */
+            position: absolute;
+            bottom:60px; 
+            left:70px;
+}
+#container_2{
+    position: absolute;
+    bottom: 46%;
+    left: 0px;
+}
+    </style>
+
+
+</head>
+
+<body>
+    <div id="hoved">
+        <div class="Marg">
+            <h1 id="info">Informasjon</h1>
+            <label for="Navn">Navn:</label>
+            <input type="text" id="Navn">
+            <br>
+            <br>
+            <label>
+                Velg kjønn:
+                <select class="kjønn" name="kjønn">
+                    <option value="Mann">Mann</option>
+                    <option value="Kvinne">Kvinne</option>
+                </select>
+            </label>
+            <br>
+            <label for="telefonnummer">Telefonnummer:</label>
+            <input id="telefonnummer" type="number" pattern="/^-?\d+\.?\d*$/"
+                onKeyPress="if(this.value.length==8) return false;" />
+            <br>
+            <br>
+            <label for="stilling">Stilling:</label>
+            <textarea id="stilling" cols="30" rows="5" placeholder="Skiv in stillingen din her"></textarea>
+            <br>
+            <br>
+            <label for="fødselsdag">Når ble du født?</label>
+            <input type="date" id="fødselsdag">
+            <br>
+            <br>
+            <br>
+            <label>
+                Har du førerkort?
+                <br>
+                <input type="radio" name="førerkort" value="Ja" id="ja"> Ja
+            </label>
+            <label>
+                <input type="radio" name="førerkort" value="Nei" id="nei" checked> Nei
+            </label>
+            <h1 id="styling">Styling</h1>
+            <label for="farge">Hvilke farge skal kortet ha?</label>
+            <input type="color" id="farge_1" value="#ffffff">
+            <input type="color" id="farge_2" value="#FFA500">
+            <br>
+            <br>
+            <br>
+            <label for="ramme">Velg ramme på kortet</label>
+            <select id="ramme">
+                <option value="heltrukken">Heltrukken</option>
+                <option value="dotted">Prikket</option>
+                <option value="groove">groove</option>
+                <option value="ingen">Ingen</option>
+            </select>
+            <br>
+            <br>
+            <label for="bilde">Velg bilde du vil ha på kortet</label>
+            <input id="bilde" type="file" style="color:transparent; width:90px;" />
+        </div>
+        <div class="Felt">
+            <div id="resultat_1">
+                <div id="Navn_resultat_d">
+                    <h1 id="Navn_resultat_h1">Navn</h1>
+                </div>
+                <div id="Navn_resultat_d4">
+                    <p id="Stilling_resultat_p">Stilling </p>
+                </div>
+                <div>
+                    <img id="bilde_resultat" src="" alt="">
+                </div>
+            </div>
+        
+            <div id="resultat_2">
+                <div id="container_2">
+                    <ul>
+                    <li id="Navn_resultat_d2">
+                        <p id="Kjønn_resultat_p">Kjønn </p>
+                    </li>
+                    <li id="Navn_resultat_d3">
+                        <p id="Telefonnummer_resultat_p">Kontaktinfo </p>
+                    </li>
+                    <li id="Navn_resultat_d5">
+                        <p id="Fødselsdag_resultat_p">Født </p>
+                    </li>
+                    <li id="Navn_resultat_d6">
+                        <p id="Førerkort_resultat_p">Førerkort </p>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    <script>
+
+        //Her samler jeg all input informasjonen med queryselector i en variabel. (Dette datatypen er ikke definert i js her bare innholdet.)
+        //jeg tenker at querySelectorAll hadde gjort det kortere, men da syntes jeg det er vanskligere å holde styr på.
+        let navn_el = document.querySelector("#Navn")
+        let navn_resultat = document.querySelector("#Navn_resultat_h1")
+
+
+
+        let telefon_el = document.querySelector("#telefonnummer")
+        let telefon_resultat = document.querySelector("#Telefonnummer_resultat_p");
+
+        telefon_el.addEventListener("input", Vis_telefonnummer)
+
+        function Vis_telefonnummer() {
+            let telefonnummer = Number(telefon_el.value)
+            telefon_resultat.innerHTML = "+47" + telefonnummer
+        }
+
+        let stilling_el = document.querySelector("#stilling")
+        let stilling_resultat = document.querySelector("#Stilling_resultat_p");
+        stilling_el.addEventListener("input", Vis_Stilling)
+        function Vis_Stilling() {
+            let stilling = stilling_el.value
+            stilling_resultat.innerHTML = stilling
+
+        }
+
+        let fødselsdag_el = document.querySelector("#fødselsdag")
+        let fødselsdag_resultat = document.querySelector("#Fødselsdag_resultat_p")
+        fødselsdag_el.addEventListener("change", Vis_Fødselsdag)
+        function Vis_Fødselsdag() {
+            let fødselsdag = fødselsdag_el.value
+            fødselsdag_resultat.innerHTML = "Født: " + fødselsdag
+        }
+
+
+        let ja_el = document.querySelector("#ja");
+        let nei_el = document.querySelector("#nei");
+        let førerkort_resultat = document.querySelector("#Førerkort_resultat_p")
+        ja_el.addEventListener("click", updateFørerkortResult);
+        nei_el.addEventListener("click", updateFørerkortResult);
+
+        function updateFørerkortResult() {
+            if (ja_el.checked) {
+                førerkort_resultat.innerHTML = "Førerkort: Ja";
+            } else {
+                førerkort_resultat.innerHTML = "Førerkort: Nei";
+            }
+        }
+        navn_el.addEventListener("input", Vis_Navn)
+
+
+        function Vis_Navn() {
+            let navn = navn_el.value
+            navn_resultat.innerHTML = navn
+        }
+
+
+        const selectElement = document.querySelector(".kjønn");
+        const result = document.querySelector("#Kjønn_resultat_p");
+
+
+        selectElement.addEventListener("click", (event) => {
+            result.textContent = `  ${event.target.value}`;
+        });
+
+        farge_1_el = document.querySelector("#farge_1");
+farge_2_el = document.querySelector("#farge_2");
+farge_2_resultat=document.querySelector("#resultat_2")
+farge_1_resultat = document.querySelector("#resultat_1");
+
+farge_1_el.addEventListener("input", Farge_1_vis);
+farge_2_el.addEventListener("input", Farge_2_vis)
+
+function Farge_1_vis() {
+    farge = farge_1_el.value;
+    farge_1_resultat.style.backgroundColor = farge;
+}
+function Farge_2_vis(){
+    farge = farge_2_el.value;
+    farge_2_resultat.style.backgroundColor = farge;
+}
+
+// Select the select element
+const ramme_select = document.getElementById("ramme");
+
+// Attach an event listener for changes
+ramme_select.addEventListener("change", function() {
+    // Get the selected value
+    const selected_ramme = ramme_select.value;
+
+    // Select the elements to change border style
+    const resultat_1 = document.getElementById("resultat_1");
+    const resultat_2 = document.getElementById("resultat_2");
+
+    // Update border style based on the selected value
+    switch (selected_ramme) {
+        case "heltrukken":
+            resultat_1.style.borderTop = "2px solid black"
+            resultat_1.style.borderBottom = "2px solid black"
+            resultat_1.style.borderLeft = "2px solid black"
+            resultat_2.style.borderTop = "2px solid black"
+            resultat_2.style.borderBottom = "2px solid black"
+            resultat_2.style.borderRight = "2px solid black"
+            break;
+        case "dotted":
+            resultat_1.style.borderTop = "2px dotted black"
+            resultat_1.style.borderBottom = "2px dotted black"
+            resultat_1.style.borderLeft = "2px dotted black"
+            resultat_2.style.borderTop = "2px dotted black"
+            resultat_2.style.borderBottom = "2px dotted black"
+            resultat_2.style.borderRight = "2px dotted black"
+            break;
+        case "groove":
+            resultat_1.style.borderTop = "2px groove black"
+            resultat_1.style.borderBottom = "2px groove black"
+            resultat_1.style.borderLeft = "2px groove black"
+            resultat_2.style.borderTop = "2px groove black"
+            resultat_2.style.borderBottom = "2px groove black"
+            resultat_2.style.borderRight = "2px groove black"
+            break;
+        case "ingen":
+            resultat_1.style.borderTop = "none"
+            resultat_1.style.borderBottom = "none"
+            resultat_1.style.borderLeft = "none"
+            resultat_2.style.borderTop = "none"
+            resultat_2.style.borderBottom = "none"
+            resultat_2.style.borderRight = "none"
+            break;
+        default:
+            break;
+    }
+});
+
+
+let bilde_el = document.querySelector("#bilde");
+        let bilde_resultat = document.querySelector("#bilde_resultat");
+
+        bilde_el.addEventListener("change", Vis_bilde);
+
+        function Vis_bilde() {
+            // Sjekk om det er valgt en fil
+            if (bilde_el.files && bilde_el.files[0]) {
+                // Opprett en FileReader
+                let leser = new FileReader();
+
+                // Les filen som en data-URL og sett kilden til bildet
+                leser.onload = function (e) {
+                    bilde_resultat.src = e.target.result;
+                };
+
+                // Les den valgte filen som en data-URL
+                leser.readAsDataURL(bilde_el.files[0]);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
