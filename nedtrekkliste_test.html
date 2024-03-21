@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lag ditt visitkort!</title>
+    <style>
+        #hoved {
+            width: 100%;
+            height: 900px;
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: "h h h h h"
+                "h h h h h"
+                "h h h h h";
+            justify-content: center;
+        }
+
+        .Felt {
+            grid-area: h;
+            background-color: #f2f2f2;
+        }
+
+        #resultat_1 {
+            height: 450px;
+            width: 728.1px;
+            background-color: white;
+            position: absolute;
+            top: 225px;
+            left: 50%;
+            border: black solid;
+            font-family: 'Garamond', serif;
+            background: linear-gradient(to right, #ffffff 0%, #ffa32b 100%);
+            padding: 20px;
+        }
+
+        #Navn_resultat_h1 {
+            position: relative;
+            top: 50px;
+            left: 70px;
+        }
+
+        #Stilling_resultat_p {
+            position: relative;
+            top: 30px;
+            left: 70px;
+            font-size: 20px;
+        }
+
+        #bilde_resultat {
+            max-width: 60%;
+            max-height: 60%;
+            display: block;
+            margin: auto;
+            position: absolute;
+            bottom: 60px;
+            left: 70px;
+        }
+
+        #container_2 {
+            position: absolute;
+            bottom: 53%;
+            left: 70%;
+        }
+
+
+        .custom-select {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        #minListe {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ffa32b;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 200px;
+            color: #ffa32b;
+        }
+
+
+        #minListe option {
+            padding: 5px;
+            font-size: 14px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="Felt">
+        <div id="resultat_1">
+            <div id="Navn_resultat_d">
+                <h1 id="Navn_resultat_h1">Navn</h1>
+            </div>
+            <div id="Navn_resultat_d4">
+                <p id="Stilling_resultat_p">Stilling </p>
+            </div>
+            <div>
+                <img id="bilde_resultat" src="" alt="">
+            </div>
+
+            <div id="container_2">
+                <ul>
+                    <li>
+                        <p id="Kjønn_resultat_p">Kjønn </p>
+                    </li>
+                    <li>
+                        <p id="Telefonnummer_resultat_p">Kontaktinfo </p>
+                    </li>
+                    <li>
+                        <p id="Fødselsdag_resultat_p">Født </p>
+                    </li>
+                    <li>
+                        <p id="Førerkort_resultat_p">Førerkort </p>
+                    </li>
+                    <li>
+                        <p id="Adresse_resultat_p">Adresse </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="custom-select">
+        <select id="minListe">
+        </select>
+    </div>
+
+    <!-- Knytter databasen til denne filen-->
+    <script src="jsonvisittkort.js"></script>
+    <script>
+
+        //Definerer hvilke output element som kan bli kalt på av en variabel.
+        let navn_resultat = document.querySelector("#Navn_resultat_h1")
+        let stilling_resultat = document.querySelector("#Stilling_resultat_p")
+        let kjønn_resultat = document.querySelector("#Kjønn_resultat_p")
+        let telefon_resultat = document.querySelector("#Telefonnummer_resultat_p")
+        let Fødselsdag_resultat = document.querySelector("#Fødselsdag_resultat_p")
+        let Førerkort_resultat = document.querySelector("#Førerkort_resultat_p")
+        let Adresse_resultat = document.querySelector("#Adresse_resultat_p")
+
+        //Lager inholdet i "select" elementet.
+        var minListe = document.getElementById("minListe")
+        for (element in visittKort.kortArray) {
+            minListe.innerHTML += "<option>" + visittKort.kortArray[element].navn + "</option>";
+        }
+
+        minListe.onchange = function () {
+
+            //Henter informasjonen fra databasen og lagrer det i en variabel
+            let navn = visittKort.kortArray[minListe.selectedIndex].navn
+            let tlf = visittKort.kortArray[minListe.selectedIndex].tlf
+            let stilling = visittKort.kortArray[minListe.selectedIndex].stilling
+            let kjønn = visittKort.kortArray[minListe.selectedIndex].kjønn
+            let fødtselsdato = visittKort.kortArray[minListe.selectedIndex].født
+            let førerkort = visittKort.kortArray[minListe.selectedIndex].førerkort
+            let Adresse = visittKort.kortArray[minListe.selectedIndex].adr
+
+            //Endrer på visningselementene på kortet
+            Fødselsdag_resultat.innerHTML = "Født: " + fødtselsdato
+            stilling_resultat.innerHTML = stilling
+            telefon_resultat.innerHTML = "+47" + tlf
+            Førerkort_resultat.innerHTML = "førerkort: " + førerkort
+            navn_resultat.innerHTML = navn
+            kjønn_resultat.innerHTML = kjønn
+            Adresse_resultat.innerHTML = Adresse
+        }
+    </script>
+</body>
+
+</html>
