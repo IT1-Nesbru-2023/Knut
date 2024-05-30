@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Generelle stiler */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1, h2 {
+      color: #333;
+      text-align: left;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    select {
+      width: 10%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="text"] {
+      width: 10%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      display: block;
+      width: 50%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    /* Tabellstiler */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      background-color: #fafafa;
+    }
+
+    th:first-child, td:first-child {
+      text-align: right;
+      background-color: #f9f9f9;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover td {
+      background-color: #f1f1f1;
+    }
+
+    /* Layout */
+    #hoved {
+      margin-top: 40px;
+      text-align: left;
+      position: relative;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .form-group > div {
+      width: 45%;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .form-group > div {
+        width: 30%;
+      }
+    }
+
+    #info {
+      width: 40px;
+      height: auto;
+    }
+
+    #tooltip {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Velg to spillere å sammenligne.</h1>
+  <label>
+    Velg spiller 1:
+    <select class="listeinnhold" id="listeinnhold1">
+      <option></option>
+      <option></option>
+    </select>
+  </label>
+
+  <label>
+    Velg spiller 2:
+    <select class="listeinnhold" id="listeinnhold2">
+      <option></option>
+      <option></option>
+    </select>
+  </label>
+
+  <table style="width:50%">
+    <tr>
+      <th></th>
+      <th>Spiller 1</th>
+      <th>Spiller 2</th>
+    </tr>
+    <tr>
+      <td>Klubb:</td>
+      <td id="Spiller_1_klubb"></td>
+      <td id="Spiller_2_klubb"></td>
+    </tr>
+    <tr>
+      <td>Spiller:</td>
+      <td id="Spiller_1_navn"></td>
+      <td id="Spiller_2_navn"></td>
+    </tr>
+    <tr>
+      <td>Posisjon</td>
+      <td class="spiller1" id="Posisjon_1"></td>
+      <td id="Posisjon_2"></td>
+    </tr>
+    <tr>
+      <td>Nummer</td>
+      <td class="spiller1" id="Nummer_1"></td>
+      <td id="Nummer_2"></td>
+    </tr>
+    <tr>
+      <td>Nasjonalitet</td>
+      <td class="spiller1" id="Nasjonalitet_1"></td>
+      <td id="Nasjonalitet_2"></td>
+    </tr>
+    <tr>
+      <td>Mål</td>
+      <td class="spiller1" id="Mål_1"></td>
+      <td id="Mål_2"></td>
+    </tr>
+    <tr>
+      <td>Høyde</td>
+      <td class="spiller1" id="Høyde_1"></td>
+      <td id="Høyde_2"></td>
+    </tr>
+    <tr>
+      <td>Assists</td>
+      <td class="spiller1" id="Assist_1"></td>
+      <td id="Assist_2"></td>
+    </tr>
+    <tr>
+      <td>Alder</td>
+      <td class="spiller1" id="Alder_1"></td>
+      <td id="Alder_2"></td>
+    </tr>
+  </table>
+
+  <div id="hoved">
+    <img src="C:/IT 1/database saker/Minimalist_info_Icon.png" alt="info" id="info">
+    <div id="tooltip">Skriv inn informasjonen til en spiller</div>
+  </div>
+
+  <div><input type="text" id="Klubb_inp" placeholder="Klubb"></div>
+  <div><input type="text" id="Spiller_inp" placeholder="Spiller"></div>
+  <div><input type="text" id="Posisjon_inp" placeholder="Posisjon"></div>
+  <div><input type="text" id="Nummer_inp" placeholder="Draktnummer"></div>
+  <div><input type="text" id="Nasjonalitet_inp" placeholder="Nasjonalitet"></div>
+  <div><input type="text" id="Mål_inp" placeholder="Mål 23/24"></div>
+  <div><input type="text" id="Høyde_inp" placeholder="Høyde (cm)"></div>
+  <div><input type="text" id="Assists_inp" placeholder="Assist 23/24"></div>
+  <div><input type="text" id="Alder_inp" placeholder="Alder"></div>
+
+  <button id="submitButton">Legg til</button>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+    import { getFirestore, query, collection, addDoc, onSnapshot, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8T0Pc_DG7lcWqK5Rqu9BJJKp5dGgJc60",
+      authDomain: "fotball-database.firebaseapp.com",
+      projectId: "fotball-database",
+      storageBucket: "fotball-database.appspot.com",
+      messagingSenderId: "931117860033",
+      appId: "1:931117860033:web:88db294d7fbbd54e3ac040",
+      measurementId: "G-5ZF6F8ZJKX"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    const q = query(collection(db, "Fotball"));
+
+    // Henter input verdiene. 
+    let inp_klubb = document.getElementById("Klubb_inp")
+    let inp_spiller = document.getElementById("Spiller_inp");
+    let inp_posisjon = document.getElementById("Posisjon_inp");
+    let inp_draktnummer = document.getElementById("Nummer_inp");
+    let inp_nasjonalitet = document.getElementById("Nasjonalitet_inp");
+    let inp_mål = document.getElementById("Mål_inp");
+    let inp_høyde = document.getElementById("Høyde_inp");
+    let inp_assists = document.getElementById("Assists_inp");
+    let inp_alder = document.getElementById("Alder_inp");
+
+    //henter knapp
+    let legg_til = document.getElementById("submitButton");
+
+    //funksjon som lager et nytt dokument i databasen med fields lik inputen
+    legg_til.addEventListener("click", fieldinput);
+
+    async function fieldinput() {
+      let docRef = await addDoc(collection(db, "Fotball"), {
+        Klubb: inp_klubb.value,
+        Spiller: inp_spiller.value,
+        Posisjon: inp_posisjon.value,
+        Draktnummer: inp_draktnummer.value,
+        Nasjonalitet: inp_nasjonalitet.value,
+        Mål: inp_mål.value,
+        Høyde_cm: inp_høyde.value,
+        Assists: inp_assists.value,
+        Alder: inp_alder.value
+      });
+      return docRef;
+    }
+
+    let FotballDokumenter1 = document.getElementById("listeinnhold1");
+    let FotballDokumenter2 = document.getElementById("listeinnhold2");
+
+    onSnapshot(q, (Dokumenter) => {
+      FotballDokumenter1.innerHTML = "";
+      FotballDokumenter2.innerHTML = "";
+      Dokumenter.forEach(skrivListe);
+    });
+
+    function skrivListe(dok) {
+      let option_element1 = document.createElement("option");
+      option_element1.value = dok.id;
+      option_element1.innerHTML = dok.data().Spiller;
+      FotballDokumenter1.appendChild(option_element1);
+
+      let option_element2 = document.createElement("option");
+      option_element2.value = dok.id;
+      option_element2.innerHTML = dok.data().Spiller;
+      FotballDokumenter2.appendChild(option_element2);
+    }
+
+    const valgt_spiller1 = document.querySelector("#listeinnhold1");
+    const celle_spiller1 = document.querySelector("#Spiller_1_navn");
+    const celle_posisjon_1 = document.querySelector("#Posisjon_1");
+    const celle_nummer_1 = document.querySelector("#Nummer_1");
+    const celle_nasjonalitet_1 = document.querySelector("#Nasjonalitet_1");
+    const celle_mål_1 = document.querySelector("#Mål_1");
+    const celle_høyde_1 = document.querySelector("#Høyde_1");
+    const celle_assist_1 = document.querySelector("#Assist_1");
+    const celle_alder_1 = document.querySelector("#Alder_1");
+    const celle_klubb_1 = document.querySelector("#Spiller_1_klubb")
+
+    valgt_spiller1.addEventListener("change", async (event) => {
+      const selectedOption = event.target.selectedOptions[0];
+      const docRef = doc(db, "Fotball", selectedOption.value);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data();
+      celle_spiller1.innerHTML = data.Spiller;
+      celle_posisjon_1.innerHTML = data.Posisjon;
+      celle_nummer_1.innerHTML = data.Draktnummer;
+      celle_nasjonalitet_1.innerHTML = data.Nasjonalitet;
+      celle_mål_1.innerHTML = data.Mål;
+      celle_høyde_1.innerHTML = data.Høyde_cm + " cm";
+      celle_assist_1.innerHTML = data.Assists;
+      celle_alder_1.innerHTML = data.Alder;
+      celle_klubb_1.innerHTML = data.Klubb
+    });
+
+    const valgt_spiller2 = document.querySelector("#listeinnhold2");
+    const celle_spiller2 = document.querySelector("#Spiller_2_navn");
+    const celle_posisjon_2 = document.querySelector("#Posisjon_2");
+    const celle_nummer_2 = document.querySelector("#Nummer_2");
+    const celle_nasjonalitet_2 = document.querySelector("#Nasjonalitet_2");
+    const celle_mål_2 = document.querySelector("#Mål_2");
+    const celle_høyde_2 = document.querySelector("#Høyde_2");
+    const celle_assist_2 = document.querySelector("#Assist_2");
+    const celle_alder_2 = document.querySelector("#Alder_2");
+    const celle_klubb_2 = document.querySelector("#Spiller_2_klubb")
+
+    valgt_spiller2.addEventListener("change", async (event) => {
+      const selectedOption = event.target.selectedOptions[0];
+      const docRef = doc(db, "Fotball", selectedOption.value);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data();
+      celle_spiller2.innerHTML = data.Spiller;
+      celle_posisjon_2.innerHTML = data.Posisjon;
+      celle_nummer_2.innerHTML = data.Draktnummer;
+      celle_nasjonalitet_2.innerHTML = data.Nasjonalitet;
+      celle_mål_2.innerHTML = data.Mål;
+      celle_høyde_2.innerHTML = data.Høyde_cm + " cm";
+      celle_assist_2.innerHTML = data.Assists;
+      celle_alder_2.innerHTML = data.Alder;
+      celle_klubb_2.innerHTML = data.Klubb
+    });
+
+    // Show tooltip on hover
+    const infoIcon = document.getElementById("info");
+    const tooltip = document.getElementById("tooltip");
+
+    infoIcon.addEventListener("mouseenter", () => {
+      tooltip.style.display = "block";
+    });
+
+    infoIcon.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+    });
+  </script>
+</body>
+
+</html>
